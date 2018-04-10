@@ -4,7 +4,7 @@
 
 ### 练习1
 ```
-使用防卫语句取代条件表达式（Replaced the Nexted Conditional with Guard Clauses）重构遗留代码
+使用防卫语句取代条件表达式（Replaced the Nested Conditional with Guard Clauses）重构遗留代码
 ```
 
 ### 练习2
