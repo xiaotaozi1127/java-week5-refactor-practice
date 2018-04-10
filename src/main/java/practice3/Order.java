@@ -16,24 +16,29 @@ public class Order {
     }
 
     public BigDecimal calculate() {
-        BigDecimal subTotal = new BigDecimal(0);
-
-        // Total up line items
-        for (OrderLineItem lineItem : orderLineItemList) {
-            subTotal = subTotal.add(lineItem.getPrice());
-        }
-
-        // Subtract discounts
-        for (BigDecimal discount : discounts) {
-            subTotal = subTotal.subtract(discount);
-        }
-
-        // calculate tax
-        BigDecimal tax = subTotal.multiply(this.tax);
-
-        // calculate GrandTotal
-        BigDecimal grandTotal = subTotal.add(tax);
-
+        BigDecimal grandTotal = new Calculation().calculate();
         return grandTotal;
+    }
+
+    private class Calculation {
+        public BigDecimal calculate() {
+            BigDecimal subTotal = new BigDecimal(0);
+
+            // Total up line items
+            for (OrderLineItem lineItem : orderLineItemList) {
+                subTotal = subTotal.add(lineItem.getPrice());
+            }
+
+            // Subtract discounts
+            for (BigDecimal discount : discounts) {
+                subTotal = subTotal.subtract(discount);
+            }
+
+            // calculate tax
+            BigDecimal tax = subTotal.multiply(Order.this.tax);
+
+            // calculate GrandTotal
+            return subTotal.add(tax);
+        }
     }
 }
